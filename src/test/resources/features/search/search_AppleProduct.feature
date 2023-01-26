@@ -11,4 +11,14 @@ Feature: Search product
       | product |
       | apple   |
 
+  @negative
+  Scenario: Search test with unavailable product tea
+    When I hit the GET search API endpoint Car
+    Then I verify 404 status Code for not available  displayed in search result
+
+  @negative
+  Scenario: Verify GET call without adding any product
+    When I hit the get search test endpoint
+    Then I verify unauthorized error should be displayed in search result
+
 

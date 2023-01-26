@@ -2,30 +2,18 @@
 Feature: Search product
 
   @positive
-  Scenario Outline: Search test with available product
-    When I call the get search test product endpoint <product>
-    Then verify the search results of product should be displayed
-    And verify the product <product> should be in Search results
-    And the schema should match with the specification defined in "search_product.json"
+  Scenario Outline: Verify mango product while GET call
+    When I hit the GET search API endpoint <product>
+    Then I verify the search results of product should be displayed
+    And I verify Success status Code should be displayed in search result
+    And I verify the product <product> should be in Search results
     Examples:
       | product |
-      | apple   |
-      | mango   |
-
-
-
-  @negative
-  Scenario Outline: Search Car which is not available in search product
-    When I call the get search test product endpoint <product>
-    Then verify the search results of product should be displayed
-    And verify the product <product> should be in Search results
-    And the schema should match with the specification defined in "search_product.json"
-    Examples:
-      | product |
-      | apple   |
       | mango   |
 
   @negative
-  Scenario: Search test without product
-    When I call the get search test endpoint
-    Then verify unauthorized error should be displayed in search result
+  Scenario: Search test with unavailable product tea
+    When I hit the GET search API endpoint Car
+    Then I verify 404 status Code for not available  displayed in search result
+
+

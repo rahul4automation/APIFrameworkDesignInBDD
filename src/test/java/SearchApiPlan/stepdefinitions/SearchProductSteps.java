@@ -62,4 +62,10 @@ public class SearchProductSteps {
     public void validateSchema(String spec) {
         baseActionsClass.verifyResponseSchema(spec);
     }
+
+
+    @Then("I verify 404 status Code for not available  displayed in search result")
+    public void notAvailableProductStatusCode() {
+        baseActionsClass.responseCodeIs(404);
+    }
 }
